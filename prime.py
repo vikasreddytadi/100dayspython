@@ -1,10 +1,15 @@
-n=int(input("entet a number"))
+n=int(input("enter"))
+m=int(input("enter"))
 count=0
-for i in range(2,n):
-	if(n%i==0):
-		count+=1
-		break
-if(count==0):
-	print(n,"is a prime number")
-else:
-	print(n,"is not a prime number")
+for i in range(n,m+1):
+    for j in range(2,i):
+        if(i%j==0):
+            count+=1
+        else:
+            continue
+    if(count==0):
+        print(i,"prime")
+    else:
+        print(i,"not prime")
+    count=0
+    
