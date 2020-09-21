@@ -1,0 +1,38 @@
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the superReducedString function below.
+def superReducedString(s):
+    stack=[]
+    top=-1
+    for i in s:
+        if(top==-1):
+            stack.append(i)
+            top+=1
+        elif(stack[top]==i):
+            stack.pop()
+            top-=1
+        else:
+            stack.append(i)
+            top+=1
+    if(top==-1):
+        return("Empty String")
+    else:
+        num="".join(stack)
+        return(num)
+    
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = superReducedString(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
