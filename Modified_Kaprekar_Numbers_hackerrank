@@ -1,0 +1,39 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the kaprekarNumbers function below.
+def kaprekarNumbers(p, q):
+    st=[]
+    for i in range(p,q+1):
+        le=len(str(i))
+        num=i**2
+        if(str(i).count("9")==len(str(i))):
+            st.append(str(i))
+        elif(len(str(num))>1):    
+            temp1=num%10**le
+            temp2=num//10**le
+            if(int(temp1)+int(temp2)==i):
+                st.append(str(i))
+        else:
+            if(int(num)==i):
+                st.append(str(i))
+    if(len(st)>0):
+        if(len(st)==1):
+            print(st[0])
+        else:
+            print(" ".join(st))
+    else:
+        print("INVALID RANGE")
+    
+
+if __name__ == '__main__':
+    p = int(input())
+
+    q = int(input())
+
+    kaprekarNumbers(p, q)
