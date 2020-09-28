@@ -1,0 +1,36 @@
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the pageCount function below.
+#
+def pageCount(n, p):
+    #
+    # Write your code here.
+    #
+    front=p//2
+    if(n%2==0):
+        n+=1
+    if(p%2==0):
+        p+=1
+    k=n
+    cnt=0
+    while(k!=p):
+        k-=2
+        cnt+=1    
+    return(min(front,cnt))
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    p = int(input())
+
+    result = pageCount(n, p)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
