@@ -1,0 +1,22 @@
+arr=[9,8,7,6,11,4,3,2,1]
+stack=[]
+vec=[]
+top=-1
+for i in range(0,len(arr)):
+    if(top==-1):
+        vec.append(-1)
+    elif(arr[i]<stack[top]):
+        vec.append(stack[top])
+    elif(arr[i]>=stack[top]):
+        while(arr[i]>=stack[top]):
+            stack.pop()
+            top-=1
+            if(top==-1):
+                break
+        if(top==-1):
+            vec.append(-1)
+        else:
+            vec.append(stack[top])
+    stack.append(arr[i])
+    top+=1
+print(vec)
