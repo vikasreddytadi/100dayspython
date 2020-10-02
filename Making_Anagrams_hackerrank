@@ -1,0 +1,35 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the makingAnagrams function below.
+def makingAnagrams(s1, s2):
+    le=len(s1)+len(s2)
+    for i in s1:
+        if(s1.count(i)<=s2.count(i)):
+            le-=s1.count(i)*2
+            s1=s1.replace(i,"")
+            s2=s2.replace(i,"")
+        elif(s1.count(i)>s2.count(i)):
+            le-=s2.count(i)*2
+            s1=s1.replace(i,"")
+            s2=s2.replace(i,"")
+    return(le)
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s1 = input()
+
+    s2 = input()
+
+    result = makingAnagrams(s1, s2)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
