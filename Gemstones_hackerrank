@@ -1,0 +1,43 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the gemstones function below.
+def gemstones(arr):
+    l=[]
+    cnt1=0
+    temp=arr[0]
+    for j in temp:
+        cnt=0
+        for i in arr:
+            if(j in i):
+                cnt+=1
+        if(cnt==len(arr)):
+            if(j not in l):
+                l.append(j)
+                cnt1+=1
+    return(cnt1)
+
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = []
+
+    for _ in range(n):
+        arr_item = input()
+        arr.append(arr_item)
+
+    result = gemstones(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
