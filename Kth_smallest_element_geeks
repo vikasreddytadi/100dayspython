@@ -1,0 +1,6 @@
+for i in range(int(input())):
+    n=int(input())
+    l=[int(i) for i in input().split()]
+    num=int(input())
+    l.sort()
+    print(l[num-1])
