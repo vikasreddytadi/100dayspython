@@ -1,0 +1,8 @@
+t=int(input())
+for i in range(t):
+    a,b=map(int,input().split())
+    l=[i for i in input().split()]
+    l1=[]
+    l1.extend(l[b:])
+    l1.extend(l[:b])
+    print(" ".join(l1))
