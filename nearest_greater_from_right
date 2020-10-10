@@ -1,0 +1,24 @@
+a=[100,80,50,70,20,30,40,60]
+stack=[]
+top=-1
+vec=[]
+num=0
+for i in range(len(a)-1,-1,-1):
+    if(top==-1):
+        vec.append(-1)
+    elif(stack[top]>a[i]):
+        vec.append(stack[top])
+    elif(stack[top]<=a[i]):
+        while(stack[top]<=a[i]):
+            stack.pop()
+            top-=1
+            if(top==-1):
+                break
+        if(top==-1):
+            vec.append(-1)
+        else:
+            vec.append(stack[top])
+    stack.append(a[i])
+    top+=1
+print(vec[::-1])
+
