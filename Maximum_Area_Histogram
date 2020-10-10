@@ -1,0 +1,54 @@
+def nsl(arr):
+    num=-1
+    stack=[]
+    vec=[]
+    top=-1
+    for i in range(0,len(arr),1):
+        if(top==-1):
+            vec.append(num)
+        elif(stack[top][0]<arr[i]):
+            vec.append(stack[top][1])
+        elif(stack[top][0]>=arr[i]):
+            while(stack[top][0]>=arr[i]):
+                stack.pop()
+                top-=1
+                if(top==-1):
+                    break
+            if(top==-1):
+                vec.append(num)
+            else:
+                vec.append(stack[top][1])
+        stack.append([arr[i],i])
+        top+=1
+    return(vec)
+def nsr(arr):
+    num=len(arr)
+    stack=[]
+    vec=[]
+    top=-1
+    for i in range(len(arr)-1,-1,-1):
+        if(top==-1):
+            vec.append(num)
+        elif(stack[top][0]<arr[i]):
+            vec.append(stack[top][1])
+        elif(stack[top][0]>=arr[i]):
+            while(stack[top][0]>=arr[i]):
+                stack.pop()
+                top-=1
+                if(top==-1):
+                    break
+            if(top==-1):
+                vec.append(num)
+            else:
+                vec.append(stack[top][1])
+        stack.append([arr[i],i])
+        top+=1
+    return(vec[::-1])
+arr=[6,2,5,4,5,1,6]
+left=nsl(arr)
+right=nsr(arr)
+res=0
+for i in range(len(left)):
+    res=max(res,(right[i]-left[i]-1)*arr[i])
+print(res)
+    
