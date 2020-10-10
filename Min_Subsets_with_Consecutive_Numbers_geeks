@@ -1,0 +1,26 @@
+#code
+for i in range(int(input())):
+    n=int(input())
+    l=[int(i) for i in input().split()]
+    l.sort()
+    stack=[]
+    top=-1
+    cnt=0
+    num=0
+    for i in range(len(l)):
+        if(top==-1):
+            stack.append(l[i])
+            top+=1
+            cnt+=1
+            num+=1
+        elif(stack[top]+num==l[i]):
+            num+=1
+            continue
+        else:
+            stack=[]
+            top=-1
+            stack.append(l[i])
+            cnt+=1
+            top+=1
+            num=1
+    print(cnt)
