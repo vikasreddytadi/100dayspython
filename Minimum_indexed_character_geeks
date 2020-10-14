@@ -1,0 +1,31 @@
+#User function Template for python3
+
+def printMinIndexChar(string,patt):
+    #return required char
+    a=10**10
+    for i in patt:
+        if(i in string):
+            a=min(a,string.index(i))
+    if(a!=10**10):
+        return(string[a])
+    else:
+        return("$")
+        
+
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+#contributed by RavinderSinghPB
+if __name__ == '__main__':
+    t=int(input())
+    
+    for tcs in range(t):
+        string=input()
+        patt=input()
+        
+        print(printMinIndexChar(string,patt))
+        
+# } Driver Code Ends
