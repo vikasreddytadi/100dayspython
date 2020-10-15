@@ -1,0 +1,17 @@
+for i in range(int(input())):
+    n=input()
+    m=input()
+    n=n.replace(m,"X")
+    stack=[]
+    top=-1
+    for i  in range(len(n)):
+        if(top==-1):
+            stack.append(n[i])
+            top+=1
+        elif(n[i]=="X" and stack[top]!="X"):
+            stack.append(n[i])
+            top+=1
+        elif(n[i]!="X"):
+            stack.append(n[i])
+            top+=1
+    print("".join(stack))
