@@ -1,0 +1,39 @@
+#User function Template for python3
+
+class Solution:
+    def patternCount(self, l): 
+        # code here 
+        stack=[]
+        top=-1
+        cnt=0
+        for i in range(len(l)):
+            if(top==-1 and l[i]!=0):
+                stack.append(l[i])
+                top+=1
+            elif(stack[top]!=l[i]):
+                stack.append(l[i])
+                top+=1
+        num="".join(stack)
+        for i in range(len(num)):
+            if(num.startswith("101",i)):
+                cnt+=1
+        return(cnt)
+
+
+
+
+
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int(input())
+    for _ in range(t):
+        S = input()
+        ob = Solution()
+        print(ob.patternCount(S))
+
+# } Driver Code Ends
