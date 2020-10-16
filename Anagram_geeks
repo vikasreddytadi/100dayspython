@@ -1,0 +1,9 @@
+for i in range(int(input())):
+    n,m=input().split()
+    n=sorted(n)
+    m=sorted(m)
+    if(n==m):
+        print("YES")
+    else:
+        print("NO")
+    
