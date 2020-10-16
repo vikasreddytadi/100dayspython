@@ -1,0 +1,14 @@
+for i in range(int(input())):
+    n=input()
+    for i in n:
+        if(i.isalpha()):
+            n=n.replace(i," ")
+    n=n.split()
+    l=[i for i in n if "9" not in i]
+    m=[int(i) for i in l]
+    if(m):
+        num=m.index(max(m))
+        print(l[num])
+    else:
+        print(-1)
+        
