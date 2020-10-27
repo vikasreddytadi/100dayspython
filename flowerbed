@@ -1,0 +1,17 @@
+a=[int(i) for i in input().split()]
+l=int(input())
+def num(a,l):
+    cnt=0
+    res=0
+    for i in range(len(a)):
+        if(a[i]==0):
+            cnt+=1
+        elif(a[i]==1):
+            res+=cnt//2
+            cnt=0
+        if(i==len(a)-1):
+            print(i)
+            res+=cnt//2
+    print(cnt,res,l)
+    return(res>=l)
+print(num(a,l))
