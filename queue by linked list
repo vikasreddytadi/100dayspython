@@ -1,0 +1,45 @@
+class node:
+    __slots__="_data","_next"
+    def __init__(self,data):
+        self._data=data
+        self._next=None
+class queue:
+    def __init__(self):
+        self._front=None
+        self._rear=None
+        self._size=0
+    def __len__(self):
+        return(self._size)
+    def isempty(self):
+        return(self._size==0)
+    def enqueue(self,e):
+        p=node(e)
+        if self.isempty():
+            self._front=p
+            self._rear=p
+            self._size+=1
+        else:
+            self._rear._next=p
+            self._rear=self._rear._next
+            self._size+=1
+    def dequeue(self):
+        if(self.isempty()):
+            print("list is empty")
+            return
+        else:
+            self._front=self._front._next
+            self._size-=1
+            if self.isempty():
+                self._rear=None
+    def display(self):
+        p=self._front
+        while(p):
+            print(p._data)
+            p=p._next
+q=queue()
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+q.dequeue()
+q.display()
+print(len(q))
