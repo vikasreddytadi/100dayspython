@@ -1,0 +1,9 @@
+def fun(n,a):
+    if(n==0):
+        print(*a)
+    for i in range(1,n+1):
+        # print(i)
+        a.append(i)
+        fun(n-i,a)
+        a.pop()
+fun(4,[])
