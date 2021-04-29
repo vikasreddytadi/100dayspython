@@ -1,0 +1,11 @@
+def fun(index,sum,a,b):
+    if(index==len(b)):
+        if(sum==0):
+            print(*a)
+        return 
+    if(b[index]<=sum):
+        a.append(b[index])
+        fun(index,sum-b[index],a,b)
+        a.pop()
+    fun(index+1,sum,a,b)
+fun(0,6,[],[1,2,4,6])
