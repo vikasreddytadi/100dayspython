@@ -1,0 +1,33 @@
+n=0
+m=0
+res=0
+carry=False
+a=False
+b=False
+temp=0
+while(n or m):
+    a=n&1
+    b=m&1
+    if(carry):
+        if((a and not b) or (not a and b)):
+            carry=True
+            pass
+        elif(not a and not b):
+            res+=2**temp
+            carry=False
+        else:
+            res+=2**temp
+            carry=True
+    else:
+        if((a and not b) or (not a and b)):
+            res+=2**temp
+        elif(not a and not b):
+            pass
+        else:
+            carry=True
+    n=n>>1
+    m=m>>1
+    temp+=1
+if(carry):
+    res+=2**temp
+print(res)
