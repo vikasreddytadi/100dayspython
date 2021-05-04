@@ -1,0 +1,52 @@
+#User function Template for python3
+
+#Complete this function
+#Function to find maximum circular subarray sum.
+def sum1(a,n):
+    max_curr_sum=0
+    max_prev_sum=0
+    for i in range(n):
+        if(max_prev_sum<max_curr_sum):
+            max_prev_sum=max_curr_sum
+        if(max_curr_sum<0):
+            max_curr_sum=0
+        max_curr_sum+=a[i]
+    return max_prev_sum
+def circularSubarraySum(arr,n):
+    tot_sum=sum(arr)
+    max_sum=sum1(arr,n)
+    if(max_sum==0):
+        return max(arr)
+    for i in range(n):
+        arr[i]=-arr[i]
+    min_sum=sum1(arr,n)
+    max_circular_array=tot_sum+min_sum
+    if(max_circular_array>max_sum):
+        return max_circular_array
+    return max_sum
+    
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+
+import math
+import sys
+
+    
+    
+
+if __name__ == "__main__":
+    T=int(input())
+    while(T>0):
+            
+        n=int(input())
+        
+        arr=[int(x) for x in input().strip().split()]
+            
+        print(circularSubarraySum(arr,n))
+        
+        T-=1
+    
+# } Driver Code Ends
