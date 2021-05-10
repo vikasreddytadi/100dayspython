@@ -1,0 +1,30 @@
+
+class Solution:
+    def subCount(self,arr, n, k):
+        d={}
+        curr=0
+        cnt=0
+        for i in range(n):
+            curr+=arr[i]
+            if(curr%k in d):
+                cnt+=d[curr%k]
+            temp=((curr%k)+k)%k
+            #print(curr,temp,cnt)
+            d[temp]=d.get(temp,0)+1
+        if(0 in d):
+            cnt+=d[0]
+        return cnt
+
+#{ 
+#  Driver Code Starts
+if __name__ == '__main__': 
+    
+    t=int(input())
+    for _ in range(0,t):
+        l=list(map(int,input().split()))
+        n=l[0]
+        k=l[1]
+        a = list(map(int,input().split()))
+        ob = Solution()
+        print(ob.subCount(a,n,k))
+# } Driver Code Ends
