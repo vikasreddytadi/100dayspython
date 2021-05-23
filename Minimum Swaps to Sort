@@ -1,0 +1,45 @@
+
+
+
+class Solution:
+    
+    #Function to find the minimum number of swaps required to sort the array.
+	def minSwaps(self, a):
+	    d=[]
+	    n=len(a)
+	    for i in range(n):
+	        d.append([a[i],i])
+	    d.sort()
+	    c=0
+	    vis=[0 for i in range(n)]
+	    for i in range(n):
+	        if(vis[i]==0):
+	            if(d[i][1]==i):
+	                continue
+	            else:
+	                vis[i]=1
+	                j=d[i][1]
+	                cnt=0
+	                while(not vis[j]):
+	                    cnt+=1
+	                    vis[j]=1
+	                    j=d[j][1]
+	                c+=cnt
+	    return c
+             
+
+#{ 
+#  Driver Code Starts
+
+
+
+if __name__ == '__main__':
+	T=int(input())
+	for i in range(T):
+		n = int(input())
+		nums = list(map(int, input().split()))
+		obj = Solution()
+		ans = obj.minSwaps(nums)
+		print(ans)
+
+# } Driver Code Ends
