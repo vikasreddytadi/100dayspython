@@ -1,0 +1,62 @@
+// { Driver Code Starts
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution{
+    public:
+    string fun(string s,string prev,int k){
+        if(s.size()<2 || prev==s) return s;
+        int i=0;
+        string re="";
+        while(i<s.size()){
+            if(i==s.size()-1 and s[i]!=s[i-1] and k>1){
+                re+=s[i];
+                i++;
+            }
+            else if(i+1<s.size() and s[i]!=s[i+1] and k>1){
+                re+=s[i];
+                i+=1;
+            }
+            else{
+                int cnt=0;
+                while(i+1<s.size() and s[i]==s[i+1]){
+                    i++;
+                    cnt++;
+                }
+                i+=1;
+                for (int j=0;j<(cnt+1)%k;j++) re+=s[i-1];
+            }
+        }
+        prev=s;
+        s=re;
+        return fun(s,prev,k);
+    }
+    string Reduced_String(int k,string s){
+        return fun(s,"$",k);
+    }
+
+
+};
+
+// { Driver Code Starts.
+
+int main() {
+    
+    
+    int t;cin>>t;
+    while(t--)
+    {
+        int k;
+        cin>>k;
+        string s;
+        cin>>s;
+        Solution obj;
+        cout<<obj.Reduced_String(k,s)<<"\n";
+        
+    }
+    
+	return 0;
+}  // } Driver Code Ends
