@@ -1,0 +1,40 @@
+#User function Template for python3
+
+class Solution:
+    def Maximum_Sum(self, l, N, k):
+        res=0
+        for i in range(1):
+            for j in range(1,len(l[i])):
+                l[i][j]+=l[i][j-1]
+        for i in range(1,len(l)):
+            for j in range(len(l[i])):
+                l[i][j]+=l[i-1][j]
+                if(j>0):
+                    l[i][j]+=l[i][j-1]-l[i-1][j-1]
+        for i in range(k-1,len(l)):
+            for j in range(k-1,len(l[i])):
+                if(i==j==k-1):
+                    n=l[i][j]
+                elif(i==k-1 and j>k-1):
+                    n=l[i][j]-l[i][j-k]
+                elif(j==k-1 and i>k-1):
+                    n=l[i][j]-l[i-k][j]
+                else:
+                    n=l[i][j]-l[i-k][j]-(l[i][j-k]-l[i-k][j-k])
+                res=max(res,n)
+        return res
+
+
+#{ 
+#  Driver Code Starts
+if __name__=="__main__":
+    t=int(input())
+    for _ in range(t):
+        n=int(input())
+        matrix=[]
+        for _ in range(n):
+            matrix.append( [ int(x) for x in input().strip().split() ] )
+        k=int(input())
+        obj = Solution()
+        print(obj.Maximum_Sum(matrix,n,k))
+# } Driver Code Ends
