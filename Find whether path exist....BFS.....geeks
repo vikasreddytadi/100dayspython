@@ -1,0 +1,88 @@
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+
+class Solution
+{
+    public:
+    //Function to find whether a path exists from the source to destination.
+    bool valid(int i,int j,int n)
+    {
+        if(i<0 || j<0){return false;}
+        if(i>=n || j>=n){return false;}
+        return true;
+    }
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        int source[2],destination[2];
+        int n=grid.size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1){
+                    source[0]=i;
+                    source[1]=j;
+                }
+                if(grid[i][j]==2){
+                    destination[0]=i;
+                    destination[1]=j;
+                }
+            }
+        }
+        int d1[4]={-1,0,1,0};
+        int d2[4]={0,1,0,-1};
+        queue<pair<int,int>> q;
+        q.push({source[0],source[1]});
+        int vis[grid.size()][grid.size()];
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid.size();j++)
+            {
+                vis[i][j]=0;
+            }
+        }
+        while(!q.empty())
+        {
+            auto it=q.front();
+            int i=it.first;
+            int j=it.second;
+            q.pop();
+            for(int k=0;k<4;k++)
+            {
+                if(valid(i+d1[k],j+d2[k],grid.size()) and vis[i+d1[k]][j+d2[k]]==0 and grid[i+d1[k]][j+d2[k]]==3)
+                {
+                    vis[i+d1[k]][j+d2[k]]=1;
+                    q.push({i+d1[k],j+d2[k]});
+                }
+                if(i+d1[k]==destination[0] and j+d2[k]==destination[1])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+// { Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n;
+		cin >> n;
+		vector<vector<int>>grid(n, vector<int>(n, -1));
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				cin >> grid[i][j];
+			}
+		}
+		Solution obj;
+		bool ans = obj.is_Possible(grid);
+		cout << ((ans) ? "1\n" : "0\n");
+	}
+	return 0;
+}  // } Driver Code Ends
