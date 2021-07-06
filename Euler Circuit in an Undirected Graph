@@ -1,0 +1,43 @@
+class Solution:
+    def dfs(self,vis,v,adj):
+        for i in adj[v]:
+            if(vis[i]==0):
+                vis[i]=1
+                self.dfs(vis,i,adj)
+	def isEularCircuitExist(self, V, adj):
+		v=0
+		for i in range(V):
+		    if(len(adj[i])>0):
+		        v=i
+		        break
+		vis=[0 for i in range(V)]
+		vis[v]=1
+		self.dfs(vis,v,adj)
+		for i in range(len(adj)):
+		    if(len(adj[i])%2==1):
+		        return 0
+		    elif(len(adj[i])>0 and vis[i]==0):
+		        return 0
+		return 1
+
+#{ 
+#  Driver Code Starts
+
+if __name__ == '__main__':
+
+	T=int(input())
+	for i in range(T):
+		V, E = map(int, input().split())
+		adj = [[] for i in range(V)]
+		for _ in range(E):
+			u, v = map(int, input().split())
+			adj[u].append(v)
+			adj[v].append(u)
+		obj = Solution()
+		ans = obj.isEularCircuitExist(V, adj)
+		if(ans):
+			print("1")
+		else:
+			print("0")
+
+# } Driver Code Ends
