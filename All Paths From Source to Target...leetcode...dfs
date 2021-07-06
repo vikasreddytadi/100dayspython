@@ -1,0 +1,18 @@
+class Solution:
+    res=[]
+    def dfs(self,v,graph,temp,vis):
+        for i in graph[v]:
+            vis[i]=1
+            temp.append(i)
+            self.dfs(i,graph,temp,vis)
+            if(i==len(vis)-1):
+                self.res.append(temp.copy())
+            temp.pop()
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        v=len(graph)
+        temp=[0]
+        vis=[0 for i in range(v)]
+        vis[0]=1
+        self.res=[]
+        self.dfs(0,graph,temp,vis)
+        return self.res
