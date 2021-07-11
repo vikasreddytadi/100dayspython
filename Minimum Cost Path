@@ -1,0 +1,53 @@
+
+import heapq
+class Solution:
+    
+    #Function to return the minimum cost to react at bottom
+	#right cell from top left cell.
+	def valid(self,i,j,n):
+	    if(i<0 or j<0 or i>=n or j>=n):
+	        return False
+	    return True
+	def minimumCostPath(self, grid):
+	    n=len(grid)
+	    min_dis=[[float('inf') for i in range(n)] for j in range(n)]
+		vis=[[0 for i in range(n)] for j in range(n)]
+		q=[]
+		min_dis[0][0]=grid[0][0]
+		q.append([min_dis[0][0],0,0])
+	
+		d1=[0,0,-1,1]
+		d2=[-1,1,0,0]
+		while(q):
+		    d,u,v=heapq.heappop(q)
+		    vis[u][v]=1
+		    for i in range(4):
+		        x=u+d1[i]
+		        y=v+d2[i]
+		        if(self.valid(x,y,n) and vis[x][y]==0):
+		            if(min_dis[x][y]>d+grid[x][y]):
+		                min_dis[x][y]=d+grid[x][y]
+		                heapq.heappush(q,[min_dis[x][y],x,y])
+		              #print(x,y)
+	    return min_dis[-1][-1]
+		  
+		
+		
+		
+#{ 
+#  Driver Code Starts
+
+
+if __name__ == '__main__':
+	T=int(input())
+	for i in range(T):
+		n = int(input())
+		grid = []
+		for _ in range(n):
+			a = list(map(int, input().split()))
+			grid.append(a)
+		obj = Solution()
+		ans = obj.minimumCostPath(grid)
+		print(ans)
+
+# } Driver Code Ends
